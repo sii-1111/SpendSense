@@ -1,0 +1,308 @@
+{
+  "version": 1,
+  "thresholds": {
+    "auto_accept_confidence": 0.75,
+    "remember_confidence": 0.9,
+    "p2p_p": 0.6
+  },
+  "debit_categories": {
+    "food_delivery": {
+      "what": "Food ordered for delivery from restaurants via apps",
+      "not_for": "Grocery or quick-commerce orders (Instamart, Blinkit, Zepto, BigBasket)",
+      "examples": [
+        "SWIGGY",
+        "ZOMATO",
+        "EatSure"
+      ]
+    },
+    "groceries": {
+      "what": "Groceries and household essentials, supermarkets, quick-commerce",
+      "not_for": "Restaurant food delivery",
+      "examples": [
+        "DMART",
+        "Swiggy Instamart",
+        "Blinkit",
+        "Zepto",
+        "BigBasket",
+        "Reliance Smart"
+      ]
+    },
+    "dining_out": {
+      "what": "Restaurants, cafes, tea stalls, bakeries paid in person",
+      "not_for": "Delivery apps",
+      "examples": [
+        "Starbucks",
+        "Sri Ganesh Tea Stall",
+        "Mylari Hotel"
+      ]
+    },
+    "shopping": {
+      "what": "Clothes, electronics, online marketplaces, general retail",
+      "not_for": "Subscriptions such as Amazon Prime",
+      "examples": [
+        "AMAZON",
+        "FLIPKART",
+        "MYNTRA",
+        "Croma"
+      ]
+    },
+    "fuel": {
+      "what": "Petrol, diesel, CNG, EV charging",
+      "examples": [
+        "HPCL",
+        "Indian Oil",
+        "BPCL",
+        "Shell"
+      ]
+    },
+    "travel_transport": {
+      "what": "Cabs, autos, metro, trains, flights, buses, hotels, FASTag",
+      "examples": [
+        "UBER",
+        "OLA",
+        "IRCTC",
+        "Rapido",
+        "MakeMyTrip",
+        "Namma Metro"
+      ]
+    },
+    "rent": {
+      "what": "House rent or PG rent, usually a large monthly transfer to the same person or a rental platform",
+      "not_for": "One-off transfers to friends or family",
+      "examples": [
+        "NoBroker rent",
+        "UPI to landlord every month on the 1st"
+      ]
+    },
+    "emi_loan": {
+      "what": "Loan EMIs and repayments by NACH/ACH mandate or to a lender",
+      "not_for": "Credit card bill payments",
+      "examples": [
+        "BAJAJ FINANCE EMI",
+        "HDFC LOAN",
+        "ACH D- TP HOME LOAN"
+      ]
+    },
+    "credit_card_payment": {
+      "what": "Paying a credit card bill",
+      "not_for": "Purchases made with a card",
+      "examples": [
+        "CRED",
+        "BILLDESK CC PAYMENT",
+        "AUTOPAY SI CC"
+      ]
+    },
+    "utilities": {
+      "what": "Electricity, water, piped gas, LPG cylinder, maintenance charges",
+      "examples": [
+        "BESCOM",
+        "BWSSB",
+        "Indane",
+        "Adani Gas",
+        "society maintenance"
+      ]
+    },
+    "mobile_internet": {
+      "what": "Mobile recharge, postpaid, broadband, DTH",
+      "examples": [
+        "JIO",
+        "AIRTEL",
+        "ACT Fibernet",
+        "Tata Play"
+      ],
+      "not_for": "Streaming apps from telecom brands, such as JioHotstar or Airtel Xstream Play subscriptions"
+    },
+    "subscriptions": {
+      "what": "Recurring digital services and memberships: streaming, music, cloud storage, apps, gym, newsletters",
+      "not_for": "Telecom, utilities, insurance or loan EMIs",
+      "examples": [
+        "NETFLIX",
+        "SPOTIFY",
+        "JioHotstar",
+        "Hotstar",
+        "YouTube Premium",
+        "Google One",
+        "Amazon Prime",
+        "Cult.fit",
+        "Swiggy One"
+      ]
+    },
+    "insurance": {
+      "what": "Health, life, vehicle or term insurance premiums",
+      "examples": [
+        "LIC",
+        "HDFC ERGO",
+        "ICICI Pru",
+        "Star Health",
+        "Acko"
+      ]
+    },
+    "investments": {
+      "what": "Mutual fund SIPs, stocks, gold, PPF, NPS, fixed deposits",
+      "examples": [
+        "GROWW",
+        "ZERODHA",
+        "BSE STAR MF SIP",
+        "Coin",
+        "NPS"
+      ]
+    },
+    "health": {
+      "what": "Pharmacy, doctors, hospitals, labs, diagnostics",
+      "examples": [
+        "Apollo Pharmacy",
+        "1mg",
+        "Practo",
+        "Manipal Hospital"
+      ]
+    },
+    "education": {
+      "what": "School or college fees, courses, books, exam fees",
+      "examples": [
+        "school fees",
+        "Coursera",
+        "Unacademy"
+      ]
+    },
+    "cash_withdrawal": {
+      "what": "ATM or cash withdrawal",
+      "examples": [
+        "ATM WDL",
+        "NFS CASH"
+      ]
+    },
+    "transfer_to_person": {
+      "what": "Money sent to an individual (friend, family, domestic help) that is not rent",
+      "not_for": "Small shops whose UPI name looks like a person's name, when the note or pattern suggests a purchase",
+      "examples": [
+        "UPI to RAMESH KUMAR",
+        "IMPS to PRIYA S"
+      ]
+    },
+    "fees_charges": {
+      "what": "Bank charges, penalties, card annual fees, GST on charges",
+      "examples": [
+        "SMS ALERT CHGS",
+        "MIN BAL CHG",
+        "ANNUAL FEE"
+      ]
+    },
+    "other": {
+      "what": "Does not clearly fit any category above"
+    }
+  },
+  "credit_categories": {
+    "salary_income": {
+      "what": "Salary, freelance or business income",
+      "examples": [
+        "NEFT SALARY ACME",
+        "Payout from client"
+      ]
+    },
+    "refund_cashback": {
+      "what": "Refunds, reversals, cashback, rewards",
+      "examples": [
+        "REFUND AMAZON",
+        "CASHBACK",
+        "REV"
+      ]
+    },
+    "interest_dividend": {
+      "what": "Savings interest, FD interest, dividends",
+      "examples": [
+        "INT.PD",
+        "DIVIDEND"
+      ]
+    },
+    "transfer_from_person": {
+      "what": "Money received from an individual",
+      "examples": [
+        "UPI from friend splitting a bill"
+      ]
+    },
+    "other_income": {
+      "what": "Any other credit"
+    }
+  },
+  "service_types": {
+    "video_streaming": {
+      "what": "Video/OTT streaming",
+      "examples": [
+        "Netflix",
+        "Hotstar",
+        "Prime Video",
+        "SonyLIV",
+        "ZEE5",
+        "JioCinema"
+      ]
+    },
+    "music_streaming": {
+      "what": "Music or podcasts",
+      "examples": [
+        "Spotify",
+        "YouTube Premium",
+        "Apple Music",
+        "Gaana"
+      ]
+    },
+    "cloud_storage": {
+      "what": "Cloud storage or backup",
+      "examples": [
+        "Google One",
+        "iCloud",
+        "Dropbox"
+      ]
+    },
+    "software_app": {
+      "what": "Apps, software, AI tools, productivity",
+      "examples": [
+        "Microsoft 365",
+        "Canva",
+        "LinkedIn Premium",
+        "ChatGPT",
+        "Claude"
+      ]
+    },
+    "delivery_membership": {
+      "what": "Delivery or shopping memberships",
+      "examples": [
+        "Swiggy One",
+        "Zomato Gold",
+        "Flipkart VIP"
+      ]
+    },
+    "fitness": {
+      "what": "Gym, fitness, sports",
+      "examples": [
+        "Cult.fit",
+        "HealthifyMe"
+      ]
+    },
+    "news_learning": {
+      "what": "News, magazines, courses",
+      "examples": [
+        "The Hindu",
+        "Coursera Plus"
+      ]
+    },
+    "essential": {
+      "what": "Rent, EMI, insurance, SIP, utilities, telecom: needed, not a leak",
+      "examples": [
+        "home loan EMI",
+        "LIC premium",
+        "SIP",
+        "Jio postpaid",
+        "BESCOM"
+      ]
+    },
+    "unknown": {
+      "what": "Cannot tell what this recurring charge is for"
+    }
+  },
+  "overlap_groups": [
+    "video_streaming",
+    "music_streaming",
+    "cloud_storage",
+    "delivery_membership"
+  ]
+}
