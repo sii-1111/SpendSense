@@ -45,6 +45,8 @@ class Handler(BaseHTTPRequestHandler):
                 return self._send(200, {"saved": True})
         except (ValueError, KeyError) as e:
             return self._send(400, {"error": str(e)})
+        except Exception as e:  # always answer in JSON so the page can show what went wrong
+            return self._send(500, {"error": f"{type(e).__name__}: {e}"})
         self._send(404, {"error": "not found"})
 
     def log_message(self, *a):

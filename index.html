@@ -100,7 +100,10 @@ async function analyse(csv) {
   const t0 = performance.now();
   try {
     const r = await fetch("/api/analyse", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({csv})});
-    const d = await r.json();
+    const body = await r.text();
+    let d;
+    try { d = JSON.parse(body); }
+    catch { throw new Error(`a different program answered on this address (HTTP ${r.status}: "${body.slice(0, 60).trim()}"). Check that app.py is what's running on this port`); }
     if (!r.ok) throw new Error(d.error || `server returned ${r.status}`);
     current = d; render(d, performance.now() - t0);
   } catch (e) { $("out").innerHTML = ""; $("err").textContent = "Couldn't read that statement: " + e.message; }
