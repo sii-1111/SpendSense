@@ -1,0 +1,8 @@
+memory.json
+results.jsonl
+__pycache__/
+*.pyc
+.env
+# never commit real bank statements
+*_real*.csv
+statements/
