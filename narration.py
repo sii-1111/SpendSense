@@ -71,7 +71,9 @@ def _clean(s):
 def parse_narration(n):
     u = n.upper()
     channel, payee, vpa, note = "other", "", "", ""
-    if u.startswith("UPI"):
+    if re.search(r"\b(CHG|CHGS|CHRG|CHARGES|ANNUAL FEE|MIN BAL)\b", u) and not u.startswith("UPI"):
+        channel = "bank_charge"  # checked first: "DEBIT CARD ANNUAL FEE" must not be read as a card purchase
+    elif u.startswith("UPI"):
         channel = "upi"
         # Two common layouts:
         #   UPI/DR/<ref>/<NAME>/<BANK>/<vpa>/<note>        (slash style)
@@ -95,8 +97,6 @@ def parse_narration(n):
         payee = next((p for p in parts[1:] if re.search(r"[A-Za-z]{3}", p) and not re.fullmatch(r"[A-Z]{4}0\w{6}", p.strip())), "")
     elif "ATM" in u or "NFS" in u or "CASH WDL" in u:
         channel = "atm"
-    elif re.search(r"CHG|CHRG|CHARGES|FEE|GST", u):
-        channel = "bank_charge"
     elif re.search(r"INT\.?PD|INTEREST", u):
         channel = "interest"
     payee = _clean(payee)[:60]
