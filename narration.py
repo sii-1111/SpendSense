@@ -73,11 +73,14 @@ def parse_narration(n):
     channel, payee, vpa, note = "other", "", "", ""
     if u.startswith("UPI"):
         channel = "upi"
-        parts = [p.strip() for p in n.split("/")]
-        # Typical: UPI/DR/<ref>/<NAME>/<BANK>/<vpa>/<note>
+        # Two common layouts:
+        #   UPI/DR/<ref>/<NAME>/<BANK>/<vpa>/<note>        (slash style)
+        #   UPI-<NAME>-<vpa>-<IFSC>-<ref>-<note>           (HDFC-style dash export)
+        sep = "/" if "/" in n[:8] else "-"
+        parts = [p.strip() for p in n.split(sep)]
         vpa = next((p for p in parts if "@" in p), "")
         texty = [p for p in parts[1:] if p and not p.isdigit() and p.upper() not in ("DR", "CR", "P2A", "P2M")
-                 and "@" not in p and len(p) > 3]
+                 and "@" not in p and len(p) > 3 and not re.fullmatch(r"[A-Z]{4}0\w{6}", p)]
         payee = texty[0] if texty else ""
         note = texty[-1] if len(texty) > 2 else ""
     elif re.match(r"^(POS|PCD|ECOM|VPS|IPS|MPS)\b", u) or " CARD " in u:

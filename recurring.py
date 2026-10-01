@@ -28,7 +28,7 @@ def detect(txns):
             continue
         amounts = [t["amount"] for t in g]
         paid = [a for a in amounts if a > 5]  # ignore ₹1-₹5 trial/verification charges
-        if not paid or max(paid) > 1.35 * min(paid):
+        if not paid or max(paid) > 1.5 * min(paid):
             continue  # amounts too varied (e.g. groceries every week) -> habit, not a subscription
         latest = amounts[-1]
         recurring.append({
