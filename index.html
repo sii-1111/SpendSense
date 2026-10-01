@@ -31,6 +31,12 @@ h2{font-size:1.15rem; font-weight:600; margin:2.75rem 0 .25rem}
 .secondary:hover{border-color:var(--ink)}
 button:focus-visible, select:focus-visible, label.primary:focus-within{outline:3px solid var(--ink); outline-offset:3px}
 input[type=file]{position:absolute; opacity:0; width:1px; height:1px}
+.notice{background:var(--leak-bg); border:1px solid color-mix(in srgb,var(--leak) 35%,transparent); border-radius:.6rem;
+  padding:.75rem 1rem; margin:0 0 1.75rem; font-size:.95rem}
+.notice strong{display:block; margin-bottom:.15rem}
+#mode{display:block; color:var(--muted); font-size:.85rem; margin-top:.35rem}
+.hint a{color:var(--ink)}
+.link{font:inherit; font-size:inherit; background:none; border:0; padding:0; margin-left:.5rem; color:var(--muted); text-decoration:underline; cursor:pointer}
 .hint{color:var(--muted); font-size:.9rem; margin:.75rem 0 0}
 .error{color:#B42318; margin-top:1rem}
 
@@ -68,13 +74,20 @@ details{margin-top:2.5rem} summary{cursor:pointer; font-weight:600}
 </head>
 <body>
 <main>
+  <div class="notice" role="note">
+    <strong>Demo: use sample or made-up statements only.</strong>
+    Please don't upload a real bank statement. Files are processed in memory and not stored, but this is a proof of concept, not a secure service.
+    <span id="mode"></span>
+  </div>
   <h1>Where did your money go?</h1>
   <p class="lede">Upload a bank statement CSV. Every UPI, card and auto-debit payment gets sorted into a category, and recurring charges you might not want are pointed out.</p>
   <div class="controls">
     <label class="primary" tabindex="0">Upload statement CSV<input type="file" id="file" accept=".csv,text/csv"></label>
     <button class="secondary" id="sample">Try a sample statement</button>
   </div>
-  <p class="hint">Columns needed: date, narration, and debit + credit (or amount + type). Your file is sent only to this app.</p>
+  <p class="hint">Columns needed: date, narration, and debit + credit (or amount + type).
+    <a href="/sample.csv" download="dummy_statement.csv">Download the sample CSV</a> to see the format.
+    <button class="link" id="reset" type="button">Forget my corrections</button></p>
   <div class="error" id="err" role="alert"></div>
   <section id="out" aria-live="polite"></section>
 </main>
@@ -94,6 +107,15 @@ let current = null;
 
 $("file").addEventListener("change", async e => { const f = e.target.files[0]; if (f) analyse(await f.text()); });
 $("sample").onclick = async () => analyse(await (await fetch("/sample.csv")).text());
+fetch("/api/config").then(r => r.json()).then(c => {
+  $("mode").textContent = (c.mode === "mock" ? "Running in demo mode with simulated answers, not the real Jev model. " : "Running on the live Jev model. ")
+    + `Limit: ${c.rate_limit_per_hour} statements an hour, ${c.max_upload_mb} MB per file.`;
+}).catch(() => {});
+$("reset").onclick = async () => {
+  const r = await fetch("/api/reset", {method:"POST", headers:{"Content-Type":"application/json"}, body:"{}"});
+  $("reset").textContent = r.ok ? "Corrections forgotten" : "Couldn't reset";
+  setTimeout(() => $("reset").textContent = "Forget my corrections", 2500);
+};
 
 async function analyse(csv) {
   $("err").textContent = ""; $("out").innerHTML = `<p class="hint">Sorting transactions…</p>`;

@@ -47,7 +47,32 @@ export TYPESAFE_API_KEY=...       # real Jev
 python eval.py
 python app.py
 ```
-Delete `memory.json` to reset what the app has learned. Using a gateway? Set `JEV_BASE_URL` and `JEV_MODEL`.
+The command-line tools (`categorise.py`, `eval.py`) keep merchant memory in `memory.json`; delete it to reset.
+The web app keeps a separate memory per visitor in server RAM ("Forget my corrections" clears yours).
+Using a gateway? Set `JEV_BASE_URL` and `JEV_MODEL`.
+
+## Deploy (Render)
+1. Push this folder to a GitHub repo (`.gitignore` keeps out `memory.json`, keys and real statements).
+2. On render.com: **New → Blueprint**, pick the repo. `render.yaml` sets the build/start commands and a health check.
+3. It starts in **demo mode** (`JEV_MOCK=1`, simulated answers, no key, no cost).
+   For live Jev: in the service's Environment tab, delete `JEV_MOCK` and set `TYPESAFE_API_KEY`.
+4. Share the `https://…onrender.com` link. Free instances sleep when idle, so the first visit can be slow.
+
+Railway, Fly.io and Hugging Face Spaces (Docker) work too: same start command, set the same environment variables.
+
+### Public-demo safeguards (all configurable by environment variable)
+| Setting | Default | What it does |
+|---|---|---|
+| `RATE_LIMIT_PER_HOUR` | 10 | Statements per visitor per hour (counted per IP and per browser session) |
+| `DAILY_JEV_CALL_CAP` | 3000 | Live mode only: stops new analyses once this many Jev calls are made in a day |
+| `MAX_UPLOAD_BYTES` | 2000000 | Largest accepted upload |
+| `ACCESS_LOG` | off | Set to `1` to log method, path and status (statement contents are never logged) |
+
+Other built-ins: a per-visitor session cookie (HttpOnly, SameSite, Secure over HTTPS); statements processed in memory
+and never written to disk; a "demo data only" notice on the page; `/healthz` for the platform's health check.
+People in one office may share an IP address, so raise `RATE_LIMIT_PER_HOUR` for a live presentation.
+Sessions live in RAM, so a restart or redeploy clears everyone's corrections. A real product would use a database
+and a production server (e.g. FastAPI behind uvicorn).
 
 ## Hard cases in the sample data
 - Swiggy (food delivery) vs Swiggy Instamart (groceries)

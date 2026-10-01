@@ -1,0 +1,20 @@
+# Render Blueprint: New -> Blueprint -> pick this repo. Check render.com/docs/blueprint-spec if a field changes.
+services:
+  - type: web
+    name: spendsense
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.6"
+      - key: JEV_MOCK            # "1" = public demo with simulated answers, no API key or cost.
+        value: "1"               # For live Jev: delete this variable and set TYPESAFE_API_KEY.
+      - key: TYPESAFE_API_KEY
+        sync: false              # you enter it in the Render dashboard; never commit keys
+      - key: RATE_LIMIT_PER_HOUR
+        value: "10"
+      - key: DAILY_JEV_CALL_CAP
+        value: "3000"

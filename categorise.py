@@ -34,21 +34,37 @@ ESSENTIAL = {"rent", "emi_loan", "insurance", "investments", "utilities", "mobil
              "transfer_to_person", "education"}  # recurring transfers to a person = household help, family support
 
 
-def load_memory():
-    try:
-        return json.loads(MEMORY_PATH.read_text())
-    except (FileNotFoundError, json.JSONDecodeError):
-        return {}
+class FileMemory:
+    """Merchant memory in one JSON file. Used by the CLI and eval.py (single user)."""
+
+    def __init__(self, path=None):
+        self.path = path
+
+    def _p(self):
+        return Path(self.path) if self.path else MEMORY_PATH  # read at call time so eval.py can redirect it
+
+    def load(self):
+        try:
+            return json.loads(self._p().read_text())
+        except (FileNotFoundError, json.JSONDecodeError):
+            return {}
+
+    def merge(self, entries, overwrite=False):
+        with _lock:
+            mem = self.load()
+            mem.update(entries if overwrite else {k: v for k, v in entries.items() if k not in mem})
+            self._p().write_text(json.dumps(mem, indent=2))
 
 
-def save_correction(merchant_key, direction, category):
+def correction_entry(merchant_key, direction, category):
     valid = RUBRIC["debit_categories"] if direction == "debit" else RUBRIC["credit_categories"]
-    if category not in valid:
+    if direction not in ("debit", "credit") or category not in valid:
         raise ValueError(f"Unknown category {category!r} for a {direction}")
-    with _lock:
-        mem = load_memory()
-        mem[f"{merchant_key}|{direction}"] = {"category": category, "source": "user"}
-        MEMORY_PATH.write_text(json.dumps(mem, indent=2))
+    return {f"{merchant_key}|{direction}": {"category": category, "source": "user"}}
+
+
+def save_correction(merchant_key, direction, category, memory=None):
+    (memory or FileMemory()).merge(correction_entry(merchant_key, direction, category), overwrite=True)
 
 
 def rule_category(t):
@@ -85,10 +101,12 @@ def build_request(group, rec):
     return state, questions
 
 
-def analyse(csv_text, client=None):
+def analyse(csv_text, client=None, memory=None):
+    """memory: any object with load() -> dict and merge(dict). Defaults to memory.json."""
+    store = memory or FileMemory()
     txns = load_csv(csv_text)
     recs = {r["merchant_key"]: r for r in rec_mod.detect(txns)}
-    memory = load_memory()
+    memory = store.load()
     th = RUBRIC["thresholds"]
     stats = {"transactions": len(txns), "by_rule": 0, "by_memory": 0, "jev_calls": 0,
              "cost_usd": 0.0, "latency_ms": [], "model": None}
@@ -140,9 +158,7 @@ def analyse(csv_text, client=None):
                 new_memory[f"{key}|{direction}"] = {"category": c["choice"], "source": "jev"}
 
     if new_memory:
-        with _lock:
-            mem = load_memory(); mem.update({k: v for k, v in new_memory.items() if k not in mem})
-            MEMORY_PATH.write_text(json.dumps(mem, indent=2))
+        store.merge(new_memory)
 
     # Recurring charges and leaks
     by_id = {t["id"]: t for t in txns}
