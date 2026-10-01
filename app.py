@@ -7,8 +7,15 @@ from pathlib import Path
 import categorise
 
 ROOT = Path(__file__).parent
-INDEX = (ROOT / "static" / "index.html").read_bytes()
-SAMPLE = (ROOT / "data" / "sample_statement.csv").read_bytes()
+INDEX_PATH = ROOT / "static" / "index.html"
+if not INDEX_PATH.exists():
+    INDEX_PATH = ROOT / "index.html"
+INDEX = INDEX_PATH.read_bytes()
+
+SAMPLE_PATH = ROOT / "data" / "sample_statement.csv"
+if not SAMPLE_PATH.exists():
+    SAMPLE_PATH = ROOT / "sample_statement.csv"
+SAMPLE = SAMPLE_PATH.read_bytes()
 MAX_BYTES = 2_000_000  # ~10k transactions
 
 
