@@ -1,114 +1,88 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>SpendSense — Money Intelligence</title><link rel="stylesheet" href="https://db.onlinewebfonts.com/c/8cb707a9b8a73f8a7403336b861c3074?family=BubbledotICG-FinePos"><style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-@font-face{font-family:"Geist Pixel Circle";src:url("fonts/GeistPixel-Circle.woff2") format("woff2");font-display:swap}
-:root{--bg:#000;--white:#fff;--muted:#9a9a9a;--pill:#28282a;--display:"BubbledotICG-FinePos","Geist Pixel Circle",monospace;--sans:"Inter","Segoe UI",system-ui,sans-serif}
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{background:#000;color:#fff;font-family:var(--sans);-webkit-font-smoothing:antialiased}
-.page{position:relative;width:100%;height:100dvh;min-height:100vh;overflow:hidden;background:#000}.bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none}.page:after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.2);z-index:0}
-.ui{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;padding:clamp(16px,2.4vh,28px) clamp(14px,3vw,32px)}
-.header{width:min(720px,100%);margin:0 auto;display:flex;align-items:center;justify-content:center;gap:clamp(18px,2.8vw,28px);animation:down .7s cubic-bezier(.22,1,.36,1) both}.logo{width:46px;height:46px;border:0;border-radius:50%;background:#fff;color:#111;display:grid;place-items:center;font-weight:600;font-size:18px;box-shadow:0 4px 14px rgba(0,0,0,.16)}.nav{height:48px;max-width:430px;flex:1;display:flex;align-items:center;justify-content:space-around;padding:4px 8px;background:#fff;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.16)}.nav button{position:relative;border:0;background:none;color:#2e2e2e;opacity:.5;font:500 14px var(--sans);cursor:pointer;padding:10px 8px}.nav button:hover,.nav button.active{opacity:1}.nav button.active:after{content:"";position:absolute;width:3px;height:3px;border-radius:50%;background:#000;left:50%;bottom:5px;transform:translateX(-50%);box-shadow:-5px 0 #000,5px 0 #000}.sign{height:48px;border:0;border-radius:999px;background:#28282a;color:#c8c8c8;padding:0 18px;font:500 14px var(--sans);box-shadow:0 4px 14px rgba(0,0,0,.16);cursor:pointer}.sign:hover{background:#323234;color:#fff;transform:translateY(-1px)}
-.hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;max-width:900px;width:100%;margin:auto}.trust{display:flex;align-items:center;margin-bottom:24px;animation:reveal .85s cubic-bezier(.22,1,.36,1) .05s both}.avatar{width:42px;height:42px;padding:5px;border-radius:50%;background:#28282a;border:1px solid rgba(255,255,255,.4);position:relative;z-index:1;margin-left:-18px}.avatar:first-child{margin-left:0}.avatar-inner{width:100%;height:100%;border-radius:50%;background:#fff;color:#111;display:grid;place-items:center;font-weight:600}.trust-pill{height:42px;margin-left:-18px;padding:0 22px 0 24px;border-radius:999px;background:#28282a;border:1px solid rgba(255,255,255,.4);color:#c4c2c3;display:flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap}
-.headline{font-family:var(--display);font-size:clamp(30px,6.2vw,80px);line-height:1.08;letter-spacing:-.04em;margin:0;color:#fff;white-space:nowrap}.headline span{display:block;opacity:0;transform:translateY(14px);animation:headline .85s cubic-bezier(.22,1,.36,1) forwards}.headline span:first-child{animation-delay:.12s}.headline span:last-child{animation-delay:.3s}.subhead{max-width:500px;margin:18px auto 0;color:#d0d0d0;opacity:.8;font-size:clamp(15px,calc(1.55vw + 2px),18.5px);line-height:1.55;animation:reveal .85s cubic-bezier(.22,1,.36,1) .28s both}.cta{margin-top:26px;border:0;border-radius:999px;background:#fff;color:#000;font:600 14px var(--sans);padding:13px 28px;cursor:pointer;box-shadow:0 0 0 1px rgba(255,255,255,.15),0 0 22px rgba(255,255,255,.32),0 0 44px rgba(255,255,255,.12);animation:pulse .85s cubic-bezier(.22,1,.36,1) .4s both}.cta:hover{transform:translateY(-2px) scale(1.02)}
-.stats{width:min(920px,100%);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:30px;padding:12px 0 2px;animation:reveal .85s cubic-bezier(.22,1,.36,1) .5s both}.stat{text-align:center}.stat-icon{font-family:var(--display);font-size:30px}.stat-value{font-size:24px;font-variant-numeric:tabular-nums;margin-top:4px}.stat-label{color:#8e8e8e;font-size:12px}
-.results{position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);width:min(900px,94vw);max-height:78vh;overflow:auto;padding:24px;background:rgba(0,0,0,.84);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.2);border-radius:24px;color:#fff;display:none}.results.show{display:block}.results .hint,.results .sub,.results .period,.results .meta,.results th{color:#aaa}.results h2{margin-top:28px}.results table{width:100%;border-collapse:collapse}.results th,.results td{padding:9px;border-bottom:1px solid rgba(255,255,255,.14)}.results .track{background:#28282a}.results .fill{background:#fff}.results select{background:#fff;color:#111}.results .save{background:#fff;color:#111;border:0;border-radius:999px;padding:7px 12px}.results .leak{background:rgba(255,255,255,.08);border-left:3px solid #fff;padding:10px 12px}.notice{position:absolute;z-index:6;bottom:10px;left:12px;color:#aaa;font-size:10px}.notice strong{color:#fff}
-.hidden{position:absolute;width:1px;height:1px;opacity:0}.burger{display:none}
-@keyframes down{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}@keyframes reveal{from{opacity:0;transform:translateY(22px) scale(.98);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}@keyframes headline{to{opacity:1;transform:none}}@keyframes pulse{0%{opacity:0;transform:translateY(22px) scale(.96);filter:blur(6px)}70%{opacity:1;transform:scale(1.025);filter:blur(0)}100%{opacity:1;transform:none}}
-@media(max-width:720px){.header{justify-content:space-between}.nav,.sign{display:none}.logo{width:48px;height:48px}.burger{display:grid;width:48px;height:48px;border:0;border-radius:50%;background:#28282a;place-items:center}.burger:before,.burger:after{content:"";width:18px;height:1.5px;background:#fff;box-shadow:0 -6px #fff,0 6px #fff}.stats{grid-template-columns:repeat(2,1fr);gap:14px}.headline{font-size:clamp(30px,9.4vw,64px);letter-spacing:-.08em}.trust{margin-bottom:16px}.subhead{font-size:15px}.results{max-height:76vh;padding:18px}}
-@media(max-width:420px){.headline{font-size:clamp(28px,9.6vw,48px);letter-spacing:-.09em}.trust-pill{font-size:12px;padding-right:12px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}.headline span{opacity:1;transform:none}}
-</style></head><body><div class="page"><video class="bg-video" autoplay muted loop playsinline><source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4" type="video/mp4"></video><div class="ui"><header class="header"><button class="logo" type="button">₹</button><nav class="nav"><button class="active">Home</button><button>Analysis</button><button>Recurring</button><button>Review</button></nav><button class="sign" id="headerUpload">Upload statement</button><button class="burger" aria-label="Menu"></button></header><main class="hero"><div class="trust"><div class="avatar"><div class="avatar-inner">₹</div></div><div class="avatar"><div class="avatar-inner">↗</div></div><div class="avatar"><div class="avatar-inner">◎</div></div><div class="trust-pill">Smart money intelligence</div></div><h1 class="headline"><span>Where Your Money</span><span>Actually Goes</span></h1><p class="subhead">Upload a bank statement and let SpendSense sort your spending, surface recurring charges, and show you the payments worth a second look.</p><button class="cta" id="cta">Analyse My Spending</button><input class="hidden" type="file" id="file" accept=".csv,text/csv"></main><section class="stats"><div class="stat"><div class="stat-icon">&lt;</div><div class="stat-value">1</div><div class="stat-label">statement at a time</div></div><div class="stat"><div class="stat-icon">%</div><div class="stat-value">100</div><div class="stat-label">in-memory processing</div></div><div class="stat"><div class="stat-icon">*</div><div class="stat-value">20+</div><div class="stat-label">spending categories</div></div><div class="stat"><div class="stat-icon">#</div><div class="stat-value">AI</div><div class="stat-label">merchant intelligence</div></div></section></div><div class="notice"><strong>Demo only.</strong> Use sample or made-up statements. <span id="mode"></span></div><section class="results" id="out" aria-live="polite"></section><div id="err"></div></div><script>
-const NAMES = {food_delivery:"Food delivery", groceries:"Groceries", dining_out:"Eating out", shopping:"Shopping", fuel:"Fuel",
-  travel_transport:"Travel and transport", rent:"Rent", emi_loan:"Loan EMIs", credit_card_payment:"Credit card bills",
-  utilities:"Electricity, water, gas", mobile_internet:"Mobile and internet", subscriptions:"Subscriptions", insurance:"Insurance",
-  investments:"Investments and SIPs", health:"Health", education:"Education", cash_withdrawal:"Cash withdrawals",
-  transfer_to_person:"Sent to people", fees_charges:"Bank charges", other:"Other",
-  salary_income:"Salary and income", refund_cashback:"Refunds and cashback", interest_dividend:"Interest", transfer_from_person:"Received from people", other_income:"Other income"};
-const PERIOD = {weekly:"week", monthly:"month", quarterly:"quarter", yearly:"year"};
-const inr = n => "₹" + Math.round(n).toLocaleString("en-IN");
-const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const $ = id => document.getElementById(id);
-let current = null;
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>SpendSense | Where Your Money Actually Goes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/8cb707a9b8a73f8a7403336b861c3074?family=BubbledotICG-FinePos" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js" defer></script>
+  <script src="/main.js" defer></script>
+</head>
+<body>
+  <div class="page" id="home">
+    <div class="bg" aria-hidden="true">
+      <video class="bg-video" autoplay muted loop playsinline>
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4" type="video/mp4">
+      </video>
+      <div class="video-shade"></div>
+    </div>
 
-$("file").addEventListener("change", async e => { const f = e.target.files[0]; if (f) analyse(await f.text()); });
-$("sample").onclick = async () => analyse(await (await fetch("/sample.csv")).text());
-fetch("/api/config").then(r => r.json()).then(c => {
-  $("mode").textContent = (c.mode === "mock" ? "Running in demo mode with simulated answers, not the real Jev model. " : "Running on the live Jev model. ")
-    + `Limit: ${c.rate_limit_per_hour} statements an hour, ${c.max_upload_mb} MB per file.`;
-}).catch(() => {});
-$("reset").onclick = async () => {
-  const r = await fetch("/api/reset", {method:"POST", headers:{"Content-Type":"application/json"}, body:"{}"});
-  $("reset").textContent = r.ok ? "Corrections forgotten" : "Couldn't reset";
-  setTimeout(() => $("reset").textContent = "Forget my corrections", 2500);
-};
+    <header class="header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#home" aria-current="page">Home</a>
+        <a class="nav-link" href="#analysis">Analysis</a>
+        <a class="nav-link" href="#recurring">Recurring</a>
+        <a class="nav-link" href="#review">Review</a>
+      </nav>
+      <button class="sign-in" id="headerUpload" type="button">Upload statement</button>
+      <button class="burger" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
 
-async function analyse(csv) {
-  $("err").textContent = ""; $("out").innerHTML = `<p class="hint">Sorting transactions…</p>`;
-  const t0 = performance.now();
-  try {
-    const r = await fetch("/api/analyse", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({csv})});
-    const body = await r.text();
-    let d;
-    try { d = JSON.parse(body); }
-    catch { throw new Error(`a different program answered on this address (HTTP ${r.status}: "${body.slice(0, 60).trim()}"). Check that app.py is what's running on this port`); }
-    if (!r.ok) throw new Error(d.error || `server returned ${r.status}`);
-    current = d; render(d, performance.now() - t0);
-  } catch (e) { $("out").innerHTML = ""; $("err").textContent = "Couldn't read that statement: " + e.message; }
-}
+    <main class="hero" id="analysis">
+      <div class="trust anim" style="--d: 0.05s" aria-label="Smart money intelligence">
+        <div class="avatars" aria-hidden="true">
+          <span class="avatar avatar-one"><span class="avatar-inner">&#8377;</span></span>
+          <span class="avatar avatar-two"><span class="avatar-inner">&#8599;</span></span>
+          <span class="avatar avatar-three"><span class="avatar-inner">&#9678;</span></span>
+        </div>
+        <span class="trust-pill">Smart money intelligence</span>
+      </div>
 
-function render(d, ms) {
-  const tx = d.transactions, dates = tx.map(t => t.date).sort();
-  const fmt = s => new Date(s).toLocaleDateString("en-IN", {day:"numeric", month:"short", year:"numeric"});
-  const leaks = d.recurring.filter(r => r.flags.length);
-  const headline = leaks.length
-    ? `You pay ${inr(d.leaks.annual_cost)} a year for ${leaks.length} recurring ${leaks.length === 1 ? "charge" : "charges"} worth a second look.`
-    : `No recurring charges stood out. Your subscriptions come to ${inr(d.subscriptions_annual)} a year.`;
-  const max = Math.max(...Object.values(d.totals), 1);
-  const review = tx.filter(t => t.needs_review);
-  const seen = new Set(), reviewUnique = review.filter(t => { const k = t.merchant_key + t.direction; if (seen.has(k)) return false; seen.add(k); return true; });
+      <h1 class="headline"><span>Where Your Money</span><span>Actually Goes</span></h1>
+      <p class="subhead anim" style="--d: 0.28s">Upload a bank statement and let SpendSense sort your spending, surface recurring charges, and show you the payments worth a second look.</p>
+      <div class="cta-group anim" style="--d: 0.4s">
+        <button class="cta" id="cta" type="button">Analyse My Spending</button>
+        <button class="sample-link" id="sample" type="button">Try a sample statement</button>
+      </div>
+      <input class="file-input" type="file" id="file" accept=".csv,text/csv,.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" tabindex="-1" aria-label="Choose a CSV or Excel statement">
+      <p class="error-toast" id="err" role="alert" hidden></p>
+    </main>
 
-  $("out").innerHTML = `
-    <p class="headline num">${headline}</p>
-    <p class="total num">Total spent: <strong>${inr(d.spend)}</strong></p>
-    <p class="period num">${fmt(dates[0])} to ${fmt(dates.at(-1))}. Money received: ${inr(d.income)}.</p>
+    <section class="stats" aria-label="Platform metrics">
+      <div class="stat anim" style="--d: 0.5s"><span class="stat-icon" aria-hidden="true">&lt;</span><span class="stat-value" data-target="1" data-decimals="0" data-suffix="">0</span><span class="stat-label">statement at a time</span></div>
+      <div class="stat anim" style="--d: 0.58s"><span class="stat-icon" aria-hidden="true">%</span><span class="stat-value" data-target="100" data-decimals="0" data-suffix="%">0%</span><span class="stat-label">in-memory processing</span></div>
+      <div class="stat anim" style="--d: 0.66s"><span class="stat-icon" aria-hidden="true">*</span><span class="stat-value" data-target="20" data-decimals="0" data-suffix="+">0+</span><span class="stat-label">spending categories</span></div>
+      <div class="stat anim" style="--d: 0.74s"><span class="stat-icon" aria-hidden="true">#</span><span class="stat-value">AI</span><span class="stat-label">merchant intelligence</span></div>
+    </section>
 
-    ${leaks.length ? `<ul class="leaks">${leaks.map(r => `
-      <li class="leak"><div class="leak-top num"><span>${esc(r.payee)}</span>
-        <span>${inr(r.latest_amount)} a ${PERIOD[r.period]} <span class="yr">(${inr(r.annual_cost)} a year)</span></span></div>
-        <ul>${r.flags.map(f => `<li>${esc(f)}</li>`).join("")}</ul></li>`).join("")}</ul>` : ""}
+  </div>
 
-    <h2>Spending by category</h2>
-    <div class="bars">${Object.entries(d.totals).map(([k, v]) => `
-      <div class="row num"><span class="label">${NAMES[k] || k}</span>
-        <div class="track" aria-hidden="true"><div class="fill" style="width:${(v / max * 100).toFixed(1)}%"></div></div>
-        <span class="amt">${inr(v)}</span></div>`).join("")}</div>
+  <button class="menu-overlay" id="menuOverlay" type="button" aria-label="Close menu" hidden></button>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation" hidden>
+    <a class="mobile-link active" href="#home" aria-current="page" style="--i: 0">Home</a>
+    <a class="mobile-link" href="#analysis" style="--i: 1">Analysis</a>
+    <a class="mobile-link" href="#recurring" style="--i: 2">Recurring</a>
+    <a class="mobile-link" href="#review" style="--i: 3">Review</a>
+    <button class="mobile-sign-in" id="mobileUpload" type="button">Upload statement</button>
+  </nav>
 
-    ${reviewUnique.length ? `<h2>Check these payees</h2>
-      <p class="sub">We weren't sure about these. Pick the right category once, and future payments to the same payee will use it.</p>
-      <div class="scroll"><table><thead><tr><th>Payee</th><th class="r">Amount</th><th>Category</th><th></th></tr></thead><tbody>
-      ${reviewUnique.map(t => `<tr data-key="${esc(t.merchant_key)}" data-dir="${t.direction}">
-        <td>${esc(t.payee || t.narration.slice(0, 40))}</td><td class="r num">${inr(t.amount)}</td>
-        <td><select aria-label="Category for ${esc(t.payee)}">${d.categories[t.direction].map(c =>
-          `<option value="${c}" ${c === t.category ? "selected" : ""}>${NAMES[c] || c}</option>`).join("")}</select></td>
-        <td><button class="save">Save</button></td></tr>`).join("")}</tbody></table></div>` : ""}
-
-    <details><summary>All recurring payments (${d.recurring.length})</summary>
-      <div class="scroll"><table><thead><tr><th>Payee</th><th>Type</th><th class="r">Per charge</th><th class="r">Per year</th></tr></thead><tbody>
-      ${d.recurring.map(r => `<tr><td>${esc(r.payee)}</td><td>${r.service_type === "essential" ? "Essential" : esc(r.service_type.replace(/_/g, " "))}</td>
-        <td class="r num">${inr(r.latest_amount)}/${PERIOD[r.period]}</td><td class="r num">${inr(r.annual_cost)}</td></tr>`).join("")}
-      </tbody></table></div></details>
-
-    <p class="meta num">${d.stats.transactions} transactions sorted in ${ms < 1000 ? Math.round(ms) + " ms" : (ms / 1000).toFixed(1) + " s"} with ${d.stats.jev_calls} calls to ${esc(d.stats.model)}${d.stats.model === "MOCK" ? " (demo answers, not the real model)" : ""}.
-      ${d.stats.by_rule} were handled by rules and ${d.stats.by_memory} by payees it already knew. Model cost for this statement: $${d.stats.cost_usd.toFixed(5)}.</p>`;
-
-  document.querySelectorAll(".save").forEach(b => b.onclick = async () => {
-    const tr = b.closest("tr"), sel = tr.querySelector("select");
-    b.disabled = true;
-    const r = await fetch("/api/correct", {method:"POST", headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({merchant_key:tr.dataset.key, direction:tr.dataset.dir, category:sel.value})});
-    b.outerHTML = r.ok ? `<span class="saved">Saved</span>` : `<span class="error">Not saved</span>`;
-  });
-}
-
-const _render=render;render=function(d,ms){_render(d,ms);document.getElementById("out").classList.add("show")};
-document.getElementById("cta").onclick=()=>document.getElementById("file").click();
-document.getElementById("headerUpload").onclick=()=>document.getElementById("file").click();
-</script></body></html>
+  <section class="results" id="out" role="dialog" aria-modal="true" aria-labelledby="resultsTitle" hidden>
+    <div class="results-toolbar">
+      <div class="result-actions">
+        <button class="result-action" id="sampleAgain" type="button">Try sample</button>
+        <button class="result-action" id="reset" type="button">Forget my corrections</button>
+      </div>
+      <button class="results-close" id="resultsClose" type="button" aria-label="Close results"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="resultsContent" aria-live="polite"></div>
+  </section>
+</body>
+</html>

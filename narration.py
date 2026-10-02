@@ -8,10 +8,39 @@ Parsing is deterministic: Jev never has to read raw reference numbers.
 import csv
 import io
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 
 DATE_FORMATS = ("%Y-%m-%d", "%d-%m-%Y", "%d/%m/%Y", "%d/%m/%y", "%d-%b-%Y", "%d %b %Y", "%d-%m-%y")
 HANDLE_NOISE = re.compile(r"^(paytmqr|q\d+|bharatpe|gpay|pay|upi|mab|yespay)[\w.]*$", re.I)
+DATE_HEADERS = ("date", "txn date", "transaction date", "value date", "posting date", "trans date")
+NARRATION_HEADERS = ("narration", "description", "particulars", "remarks", "details", "transaction details",
+                     "transaction description", "transaction narration", "transaction remarks", "narration remarks",
+                     "payment details")
+DEBIT_HEADERS = ("debit", "debits", "debit amount", "debit amt", "debit dr", "dr", "dr amount", "dr amt",
+                 "withdrawal", "withdrawals", "withdrawal amount", "withdrawal amt", "withdrawal dr", "money out")
+CREDIT_HEADERS = ("credit", "credits", "credit amount", "credit amt", "credit cr", "cr", "cr amount", "cr amt",
+                  "deposit", "deposits", "deposit amount", "deposit amt", "deposit cr", "money in")
+AMOUNT_HEADERS = ("amount", "transaction amount", "transaction amt", "amt")
+TYPE_HEADERS = ("type", "dr cr", "cr dr", "transaction type", "debit credit")
+
+
+def _column_key(value):
+    return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9]+", " ", str(value or "").lower())).strip()
+
+
+def _find_columns(headers):
+    columns = {_column_key(header): header for header in headers if _column_key(header)}
+
+    def pick(names):
+        return next((columns[name] for name in names if name in columns), None)
+
+    date = pick(DATE_HEADERS)
+    narration = pick(NARRATION_HEADERS)
+    debit, credit = pick(DEBIT_HEADERS), pick(CREDIT_HEADERS)
+    amount, kind = pick(AMOUNT_HEADERS), pick(TYPE_HEADERS)
+    if date and narration and ((debit and credit) or amount):
+        return date, narration, debit, credit, amount, kind
+    return None
 
 
 def _num(v):
@@ -28,21 +57,29 @@ def _date(v):
             return datetime.strptime(v.strip(), f).date()
         except ValueError:
             pass
+    try:
+        serial = float(v.strip())
+        if serial >= 1:
+            return (datetime(1899, 12, 30) + timedelta(days=serial)).date()
+    except (OverflowError, ValueError):
+        pass
     raise ValueError(f"Unrecognised date: {v!r}")
 
 
 def load_csv(text):
-    rows = list(csv.DictReader(io.StringIO(text.strip())))
-    if not rows:
+    source_rows = list(csv.reader(io.StringIO(text.strip())))
+    if not source_rows:
         raise ValueError("The CSV has no rows.")
-    cols = {c.lower().strip(): c for c in rows[0].keys()}
-    pick = lambda *names: next((cols[n] for n in names if n in cols), None)
-    c_date = pick("date", "txn date", "transaction date", "value date")
-    c_narr = pick("narration", "description", "particulars", "remarks", "details")
-    c_dr, c_cr = pick("debit", "withdrawal", "withdrawal amt.", "dr"), pick("credit", "deposit", "deposit amt.", "cr")
-    c_amt, c_type = pick("amount"), pick("type", "dr/cr")
-    if not (c_date and c_narr and ((c_dr and c_cr) or c_amt)):
+    header_index = next((index for index, row in enumerate(source_rows[:30]) if _find_columns(row)), None)
+    if header_index is None:
         raise ValueError("Need columns: date, narration, and debit+credit (or amount+type).")
+    headers = [header.strip() for header in source_rows[header_index]]
+    c_date, c_narr, c_dr, c_cr, c_amt, c_type = _find_columns(headers)
+    rows = [
+        {header: row[index].strip() if index < len(row) else "" for index, header in enumerate(headers) if header}
+        for row in source_rows[header_index + 1:]
+        if any(value.strip() for value in row)
+    ]
     out = []
     for i, r in enumerate(rows):
         if c_dr and c_cr:

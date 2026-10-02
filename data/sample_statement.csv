@@ -1,0 +1,111 @@
+date,narration,debit,credit,label,recurring_label
+2026-07-01,NEFT CR-HDFC0000123-ACME TECHNOLOGIES PVT LTD-SALARY JUL 2026,,85000.00,salary_income,
+2026-07-01,UPI/DR/452187499831/SURESH NAIK/YESB/sureshnaik65@oksbi/rent,18000.00,,rent,yes
+2026-07-03,ACH D- BAJAJ FINANCE LTD-EMI 4417123,4250.00,,emi_loan,yes
+2026-07-03,UPI/DR/441121836719/UBER INDIA/YESB/uber.rides@axisbank/ride,412.00,,travel_transport,
+2026-07-04,UPI/DR/441106761304/Zomato Ltd/YESB/zomato.order@hdfcbank/order,615.00,,food_delivery,
+2026-07-04,UPI/DR/458033309628/AMAZON/YESB/amazon@apl/order,1299.00,,shopping,
+2026-07-05,ACH D- BSE STAR MF SIP-GROWW-44177,5000.00,,investments,yes
+2026-07-07,UPI/DR/407090709584/NETFLIX/YESB/netflixupi.payu@hdfcbank/Netflix subscription,649.00,,subscriptions,yes
+2026-07-08,UPI/DR/473214515120/SWIGGY/YESB/swiggy.stores@icici/order,412.00,,food_delivery,
+2026-07-09,UPI/DR/415186497579/SPOTIFY INDIA/YESB/spotify.bdsi@icici/autopay,139.00,,subscriptions,yes
+2026-07-10,UPI/DR/418980057666/Zomato Ltd/YESB/zomato.order@hdfcbank/order,615.00,,food_delivery,
+2026-07-12,POS 4521XXXXXXXX2231 GOOGLE ONE GOOGLE.COM,130.00,,subscriptions,yes
+2026-07-12,UPI/DR/473432905170/SWIGGY INSTAMART/YESB/instamart.swiggy@icici/order,640.00,,groceries,
+2026-07-14,UPI/DR/478880033272/JIOSTAR HOTSTAR/YESB/jiohotstar@axisbank/subscription,299.00,,subscriptions,yes
+2026-07-14,UPI/DR/415313507023/SWIGGY/YESB/swiggy.stores@icici/order,412.00,,food_delivery,
+2026-07-15,POS 4521XXXXXXXX2231 LINKEDIN PREMIUM,2.00,,subscriptions,yes
+2026-07-15,UPI/DR/440207690072/SRI GANESH TEA STALL/YESB/q84512933@ybl/Payment,30.00,,dining_out,
+2026-07-15,UPI/DR/482841061896/HPCL KUVEMPUNAGAR/YESB/hpcl.kuvempu@okicici/fuel,1500.00,,fuel,
+2026-07-16,UPI/DR/446708359879/UBER INDIA/YESB/uber.rides@axisbank/ride,412.00,,travel_transport,
+2026-07-16,POS 4521XXXXXXXX2231 CULT FIT,1299.00,,subscriptions,
+2026-07-18,UPI/DR/427949223669/BESCOM/YESB/bescom.billdesk@hdfcbank/electricity bill,1180.00,,utilities,yes
+2026-07-18,UPI/DR/461478793967/SRI GANESH TEA STALL/YESB/q84512933@ybl/Payment,60.00,,dining_out,
+2026-07-19,UPI/DR/454054488821/SWIGGY/YESB/swiggy.stores@icici/order,289.00,,food_delivery,
+2026-07-19,UPI/DR/488352650089/SWIGGY INSTAMART/YESB/instamart.swiggy@icici/order,890.00,,groceries,
+2026-07-19,POS 4521XXXXXXXX2231 DMART MYSURU,2340.00,,groceries,
+2026-07-19,UPI/DR/451488231404/APOLLO PHARMACY/YESB/apollopharmacy@icici/medicine,846.00,,health,
+2026-07-20,UPI/DR/456203715418/RELIANCE JIO/YESB/jiorecharge@paytm/recharge,349.00,,mobile_internet,yes
+2026-07-20,UPI/DR/465309095391/SRI GANESH TEA STALL/YESB/q84512933@ybl/Payment,60.00,,dining_out,
+2026-07-21,UPI/DR/480004216501/SWIGGY/YESB/swiggy.stores@icici/order,289.00,,food_delivery,
+2026-07-22,ACH D- LIC OF INDIA PREMIUM 88123,2100.00,,insurance,yes
+2026-07-25,UPI/DR/410385970331/CRED CLUB/YESB/cred.club@axisbank/CC bill,11200.00,,credit_card_payment,yes
+2026-07-25,UPI/DR/418648987694/RAHUL KUMAR/YESB/rahulk.92@okhdfcbank/dinner split,700.00,,transfer_to_person,
+2026-07-26,UPI/DR/473404053465/LAKSHMI/YESB/lakshmi.m1987@ybl/salary,6000.00,,transfer_to_person,yes
+2026-07-26,UPI/DR/495261372826/MYLARI HOTEL/YESB/paytmqr1xyz9@paytm/Payment,180.00,,dining_out,
+2026-07-27,UPI/DR/424404015764/SWIGGY INSTAMART/YESB/instamart.swiggy@icici/order,640.00,,groceries,
+2026-07-28,ATM WDL NFS CASH MYSURU KUVEMPUNAGAR,3000.00,,cash_withdrawal,
+2026-08-01,NEFT CR-HDFC0000123-ACME TECHNOLOGIES PVT LTD-SALARY AUG 2026,,85000.00,salary_income,
+2026-08-01,UPI/DR/406106147945/SURESH NAIK/YESB/sureshnaik65@oksbi/rent,18000.00,,rent,yes
+2026-08-02,UPI/DR/497629585935/SWIGGY/YESB/swiggy.stores@icici/order,356.00,,food_delivery,
+2026-08-03,ACH D- BAJAJ FINANCE LTD-EMI 4417123,4250.00,,emi_loan,yes
+2026-08-03,UPI/DR/417936718576/MYLARI HOTEL/YESB/paytmqr1xyz9@paytm/Payment,180.00,,dining_out,
+2026-08-04,UPI/DR/410156033797/AMMA/YESB/sharada.rao@oksbi/home,10000.00,,transfer_to_person,
+2026-08-05,ACH D- BSE STAR MF SIP-GROWW-44177,5000.00,,investments,yes
+2026-08-05,UPI/DR/433236017638/SWIGGY INSTAMART/YESB/instamart.swiggy@icici/order,455.00,,groceries,
+2026-08-05,POS 4521XXXXXXXX2231 DMART MYSURU,1980.00,,groceries,
+2026-08-07,UPI/DR/494326153716/NETFLIX/YESB/netflixupi.payu@hdfcbank/Netflix subscription,649.00,,subscriptions,yes
+2026-08-09,UPI/DR/479706328442/SPOTIFY INDIA/YESB/spotify.bdsi@icici/autopay,139.00,,subscriptions,yes
+2026-08-10,UPI/DR/417197451097/HPCL KUVEMPUNAGAR/YESB/hpcl.kuvempu@okicici/fuel,2000.00,,fuel,
+2026-08-11,UPI/DR/421273393600/RAHUL KUMAR/YESB/rahulk.92@okhdfcbank/dinner split,450.00,,transfer_to_person,
+2026-08-11,IRCTC TKT BKG PG IRCTC ETICKET,1235.00,,travel_transport,
+2026-08-12,POS 4521XXXXXXXX2231 GOOGLE ONE GOOGLE.COM,130.00,,subscriptions,yes
+2026-08-12,UPI/DR/482326140902/Zomato Ltd/YESB/zomato.order@hdfcbank/order,450.00,,food_delivery,
+2026-08-13,UPI/DR/410722414652/SWIGGY INSTAMART/YESB/instamart.swiggy@icici/order,890.00,,groceries,
+2026-08-13,UPI/DR/434178195293/SRI GANESH TEA STALL/YESB/q84512933@ybl/Payment,30.00,,dining_out,
+2026-08-14,UPI/DR/446464473802/JIOSTAR HOTSTAR/YESB/jiohotstar@axisbank/subscription,299.00,,subscriptions,yes
+2026-08-14,UPI/DR/451481484106/SRI GANESH TEA STALL/YESB/q84512933@ybl/Payment,60.00,,dining_out,
+2026-08-15,POS 4521XXXXXXXX2231 LINKEDIN PREMIUM,1600.00,,subscriptions,yes
+2026-08-15,UPI/DR/474739492982/SWIGGY INSTAMART/YESB/instamart.swiggy@icici/order,1210.00,,groceries,
+2026-08-16,UPI/DR/493188086085/SWIGGY/YESB/swiggy.stores@icici/order,289.00,,food_delivery,
+2026-08-16,UPI/DR/426023011072/Zomato Ltd/YESB/zomato.order@hdfcbank/order,310.00,,food_delivery,
+2026-08-18,UPI/DR/495950094914/BESCOM/YESB/bescom.billdesk@hdfcbank/electricity bill,1340.00,,utilities,yes
+2026-08-18,UPI/DR/483190310637/AMAZON/YESB/amazon@apl/order,2499.00,,shopping,
+2026-08-20,UPI/DR/466977308621/RELIANCE JIO/YESB/jiorecharge@paytm/recharge,349.00,,mobile_internet,yes
+2026-08-21,UPI/DR/440568718192/SWIGGY/YESB/swiggy.stores@icici/order,520.00,,food_delivery,
+2026-08-21,UPI/CR/413831780352/AMAZON REFUND/HDFC/amazon@apl/refund,,799.00,refund_cashback,
+2026-08-22,ACH D- LIC OF INDIA PREMIUM 88123,2100.00,,insurance,yes
+2026-08-22,UPI/DR/401490376253/SWIGGY/YESB/swiggy.stores@icici/order,520.00,,food_delivery,
+2026-08-22,UPI/DR/401002170858/UBER INDIA/YESB/uber.rides@axisbank/ride,243.00,,travel_transport,
+2026-08-25,UPI/DR/410549321578/CRED CLUB/YESB/cred.club@axisbank/CC bill,11200.00,,credit_card_payment,yes
+2026-08-26,UPI/DR/438417112790/LAKSHMI/YESB/lakshmi.m1987@ybl/salary,6000.00,,transfer_to_person,yes
+2026-08-27,UPI/DR/424005102687/UBER INDIA/YESB/uber.rides@axisbank/ride,243.00,,travel_transport,
+2026-08-28,UPI/DR/436722913375/SRI GANESH TEA STALL/YESB/q84512933@ybl/Payment,60.00,,dining_out,
+2026-08-28,ATM WDL NFS CASH MYSURU KUVEMPUNAGAR,3000.00,,cash_withdrawal,
+2026-09-01,NEFT CR-HDFC0000123-ACME TECHNOLOGIES PVT LTD-SALARY SEP 2026,,85000.00,salary_income,
+2026-09-01,UPI/DR/453941661384/SURESH NAIK/YESB/sureshnaik65@oksbi/rent,18000.00,,rent,yes
+2026-09-01,UPI/DR/437753252742/AMAZON/YESB/amazon@apl/order,799.00,,shopping,
+2026-09-02,UPI/CR/465398804860/PRIYA S/HDFC/priyas@ybl/trip share,,2400.00,transfer_from_person,
+2026-09-03,ACH D- BAJAJ FINANCE LTD-EMI 4417123,4250.00,,emi_loan,yes
+2026-09-03,UPI/DR/429525032759/SWIGGY/YESB/swiggy.stores@icici/order,198.00,,food_delivery,
+2026-09-04,UPI/DR/477310413256/SWIGGY/YESB/swiggy.stores@icici/order,412.00,,food_delivery,
+2026-09-04,UPI/DR/464329259939/Zomato Ltd/YESB/zomato.order@hdfcbank/order,310.00,,food_delivery,
+2026-09-04,UPI/DR/446169497941/SWIGGY INSTAMART/YESB/instamart.swiggy@icici/order,1210.00,,groceries,
+2026-09-05,ACH D- BSE STAR MF SIP-GROWW-44177,5000.00,,investments,yes
+2026-09-07,UPI/DR/453249303587/NETFLIX/YESB/netflixupi.payu@hdfcbank/Netflix subscription,799.00,,subscriptions,yes
+2026-09-07,UPI/DR/449513488504/SRI GANESH TEA STALL/YESB/q84512933@ybl/Payment,30.00,,dining_out,
+2026-09-08,UPI/DR/433515030269/UBER INDIA/YESB/uber.rides@axisbank/ride,186.00,,travel_transport,
+2026-09-09,UPI/DR/414577634477/SPOTIFY INDIA/YESB/spotify.bdsi@icici/autopay,139.00,,subscriptions,yes
+2026-09-09,UPI/DR/495320979204/RAHUL KUMAR/YESB/rahulk.92@okhdfcbank/dinner split,700.00,,transfer_to_person,
+2026-09-12,POS 4521XXXXXXXX2231 GOOGLE ONE GOOGLE.COM,130.00,,subscriptions,yes
+2026-09-12,UPI/DR/449831409679/Zomato Ltd/YESB/zomato.order@hdfcbank/order,310.00,,food_delivery,
+2026-09-13,UPI/DR/486537365405/SWIGGY/YESB/swiggy.stores@icici/order,356.00,,food_delivery,
+2026-09-14,UPI/DR/487967470684/JIOSTAR HOTSTAR/YESB/jiohotstar@axisbank/subscription,299.00,,subscriptions,yes
+2026-09-15,POS 4521XXXXXXXX2231 LINKEDIN PREMIUM,1600.00,,subscriptions,yes
+2026-09-16,UPI/DR/409929330110/SWIGGY INSTAMART/YESB/instamart.swiggy@icici/order,890.00,,groceries,
+2026-09-16,UPI/DR/498049187259/SWIGGY INSTAMART/YESB/instamart.swiggy@icici/order,890.00,,groceries,
+2026-09-17,POS 4521XXXXXXXX2231 DMART MYSURU,2340.00,,groceries,
+2026-09-17,UPI/DR/447962080326/MYLARI HOTEL/YESB/paytmqr1xyz9@paytm/Payment,180.00,,dining_out,
+2026-09-17,UPI/DR/449361122154/HPCL KUVEMPUNAGAR/YESB/hpcl.kuvempu@okicici/fuel,1500.00,,fuel,
+2026-09-18,UPI/DR/406014855302/BESCOM/YESB/bescom.billdesk@hdfcbank/electricity bill,1180.00,,utilities,yes
+2026-09-18,UPI/DR/483166071343/SWIGGY/YESB/swiggy.stores@icici/order,289.00,,food_delivery,
+2026-09-18,UPI/DR/445108740235/UBER INDIA/YESB/uber.rides@axisbank/ride,412.00,,travel_transport,
+2026-09-20,UPI/DR/461026173194/RELIANCE JIO/YESB/jiorecharge@paytm/recharge,349.00,,mobile_internet,yes
+2026-09-22,ACH D- LIC OF INDIA PREMIUM 88123,2100.00,,insurance,yes
+2026-09-23,UPI/DR/440922918437/SRI GANESH TEA STALL/YESB/q84512933@ybl/Payment,60.00,,dining_out,
+2026-09-25,UPI/DR/413581988773/CRED CLUB/YESB/cred.club@axisbank/CC bill,9870.00,,credit_card_payment,yes
+2026-09-26,UPI/DR/406875071241/LAKSHMI/YESB/lakshmi.m1987@ybl/salary,6000.00,,transfer_to_person,yes
+2026-09-28,UPI/DR/494880167842/SRI GANESH TEA STALL/YESB/q84512933@ybl/Payment,40.00,,dining_out,
+2026-09-28,ATM WDL NFS CASH MYSURU KUVEMPUNAGAR,3000.00,,cash_withdrawal,
+2026-09-30,INT.PD:0123456789:01-07-2026 TO 30-09-2026,,412.00,interest_dividend,
+2026-09-30,SMS ALERT CHGS INCL GST JUL-SEP,17.70,,fees_charges,

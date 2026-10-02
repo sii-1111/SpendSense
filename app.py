@@ -21,11 +21,18 @@ from pathlib import Path
 import categorise
 
 ROOT = Path(__file__).parent
-INDEX = (ROOT / "static" / "index.html").read_bytes()
+INDEX = (ROOT / "index.html").read_bytes()
 SAMPLE = (ROOT / "data" / "sample_statement.csv").read_bytes()
 DUMMY = (ROOT / "data" / "dummy_statement.csv").read_bytes()
+ASSETS = {
+    "/styles.css": (ROOT / "styles.css", "text/css; charset=utf-8"),
+    "/main.js": (ROOT / "main.js", "text/javascript; charset=utf-8"),
+    "/assets/logo.webp": (ROOT / "assets" / "logo.webp", "image/webp"),
+    "/fonts/GeistPixel-Circle.woff2": (ROOT / "fonts" / "GeistPixel-Circle.woff2", "font/woff2"),
+}
 
-MOCK = os.getenv("JEV_MOCK") == "1"
+PORT = int(os.getenv("PORT", 5000))
+MOCK = os.getenv("JEV_MOCK") == "1" or not os.getenv("TYPESAFE_API_KEY")
 MAX_BYTES = int(os.getenv("MAX_UPLOAD_BYTES", 2_000_000))          # ~10k transactions
 RATE_PER_HOUR = int(os.getenv("RATE_LIMIT_PER_HOUR", 10))          # analyses per visitor per hour
 DAILY_JEV_CALLS = int(os.getenv("DAILY_JEV_CALL_CAP", 3000))       # real-mode only; 0 = no cap
@@ -148,6 +155,11 @@ class Handler(BaseHTTPRequestHandler):
         self._session()
         if self.path in ("/", "/index.html"):
             return self._send(200, INDEX, "text/html; charset=utf-8")
+        if self.path in ASSETS:
+            path, content_type = ASSETS[self.path]
+            if path.is_file():
+                return self._send(200, path.read_bytes(), content_type)
+            return self._send(404, {"error": "asset not found"})
         if self.path == "/sample.csv":
             return self._send(200, DUMMY, "text/csv; charset=utf-8")
         if self.path == "/healthz":
@@ -196,8 +208,7 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 8000))
     if not MOCK and not os.getenv("TYPESAFE_API_KEY"):
         raise SystemExit("Set TYPESAFE_API_KEY for live mode, or JEV_MOCK=1 for the demo mode.")
-    print(f"SpendSense running on http://localhost:{port}  [{'MOCK (fake answers)' if MOCK else 'live Jev'}]", flush=True)
-    ThreadingHTTPServer(("0.0.0.0", port), Handler).serve_forever()
+    print(f"SpendSense running on http://localhost:{PORT}  [{'MOCK (fake answers)' if MOCK else 'live Jev'}]", flush=True)
+    ThreadingHTTPServer(("0.0.0.0", PORT), Handler).serve_forever()
